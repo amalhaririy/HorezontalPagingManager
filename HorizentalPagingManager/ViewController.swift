@@ -19,8 +19,6 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         pagingView.delegate = self
         pagingView.enableScaleAnimation = true
-        pagingView.pageControl.pageIndicatorTintColor = .red
-         pagingView.pageControl.isHidden = true
       
     }
 

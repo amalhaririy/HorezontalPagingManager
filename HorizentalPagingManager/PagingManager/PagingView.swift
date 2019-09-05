@@ -12,6 +12,7 @@ protocol HorizontalPagingDelegate {
     func slideViews() -> [UIView]
 }
 
+
 class PagingView: UIView {
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -23,15 +24,7 @@ class PagingView: UIView {
             reloadView()
         }
     }
-    var enableScaleAnimation:Bool = false{
-        didSet {
-            if enableScaleAnimation {
-              scrollView.delegate = self
-            }else{
-              scrollView.delegate = nil
-            }
-        }
-    }
+    var enableScaleAnimation:Bool = false
     
     var showHorizontalIndicator:Bool = false{
         didSet  {
@@ -64,6 +57,7 @@ class PagingView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth ,.flexibleHeight]
+        scrollView.delegate = self
     }
     
     func setPagingControlColor(currentColor:UIColor ,othersColor:UIColor ) {
@@ -96,23 +90,23 @@ extension PagingView : UIScrollViewDelegate  {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x/self.frame.width)
         pageControl.currentPage = Int(pageIndex)
-       
-        let maximumHorizontalOffset: CGFloat = scrollView.contentSize.width
-        let currentHorizontalOffset: CGFloat = scrollView.contentOffset.x
-        
-        let percentageHorizontalOffset: CGFloat = currentHorizontalOffset / maximumHorizontalOffset
-        
-        var percent = percentageHorizontalOffset * CGFloat(slides.count)
-        let currentIndex = Int(percent)
-        percent -= CGFloat(currentIndex)
-        print("index: " , currentIndex , "    perc : " ,percent)
-        if currentIndex < slides.count - 1 &&  currentIndex >= 0{
-            if currentIndex > 0 {
-               slides[currentIndex - 1].transform = CGAffineTransform(scaleX: 1, y: 1)
-            }
-            slides[currentIndex].transform = CGAffineTransform(scaleX: (1-percent), y: (1-percent))
-            slides[currentIndex + 1].transform = CGAffineTransform(scaleX: percent, y: percent)
+        if enableScaleAnimation{
+            let maximumHorizontalOffset: CGFloat = scrollView.contentSize.width
+            let currentHorizontalOffset: CGFloat = scrollView.contentOffset.x
             
+            let percentageHorizontalOffset: CGFloat = currentHorizontalOffset / maximumHorizontalOffset
+            
+            var percent = percentageHorizontalOffset * CGFloat(slides.count)
+            let currentIndex = Int(percent)
+            percent -= CGFloat(currentIndex)
+            if currentIndex < slides.count - 1 &&  currentIndex >= 0{
+                if currentIndex > 0 {
+                    slides[currentIndex - 1].transform = CGAffineTransform(scaleX: 1, y: 1)
+                }
+                slides[currentIndex].transform = CGAffineTransform(scaleX: (1-percent), y: (1-percent))
+                slides[currentIndex + 1].transform = CGAffineTransform(scaleX: percent, y: percent)
+                
+            }
         }
         
     }

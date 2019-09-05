@@ -19,18 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PDG-Bl-WjW" customClass="PagingView" customModule="HorizentalPagingManeger" customModuleProvider="target">
-                                <rect key="frame" x="100" y="218" width="214" height="300"/>
+                                <rect key="frame" x="0.0" y="218" width="414" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="214" id="YEv-tt-Q8o"/>
                                     <constraint firstAttribute="height" constant="300" id="po3-RV-NnC"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PDG-Bl-WjW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="LqU-OP-fwD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PDG-Bl-WjW" secondAttribute="trailing" constant="100" id="PcK-FE-9dK"/>
+                            <constraint firstItem="PDG-Bl-WjW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LqU-OP-fwD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PDG-Bl-WjW" secondAttribute="trailing" id="PcK-FE-9dK"/>
                             <constraint firstItem="PDG-Bl-WjW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zKe-Wf-4qK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
